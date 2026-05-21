@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人生楽しんだもんが価値シリーズ | あなたの人生、ちゃんと証明します。</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange1: #FF8C42;
+    --orange2: #FFB347;
+    --orange3: #FFD8A8;
+    --orange4: #FFF5E6;
+    --deep: #C85A00;
+    --ink: #3A2010;
+    --gray: #9A7A5A;
+    --white: #FFFFFF;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans JP',sans-serif; background:var(--orange4); color:var(--ink); overflow-x:hidden; }
+
+  /* 雲SVG */
+  .cloud {
+    position:absolute;
+    opacity:0.18;
+    animation:cloudFloat 10s ease-in-out infinite;
+  }
+  .cloud svg { fill:white; }
+  @keyframes cloudFloat { 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(-14px) translateX(8px);} }
+
+  /* Hero */
+  .hero {
+    min-height:100vh;
+    background:linear-gradient(160deg, var(--orange1) 0%, var(--orange2) 60%, var(--orange3) 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:3rem 2rem 5rem;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* 雲の形をborder-radiusで */
+  .cloud-shape {
+    position:absolute;
+    background:rgba(255,255,255,0.2);
+  }
+  .cloud-shape::before,
+  .cloud-shape::after {
+    content:'';
+    position:absolute;
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+  }
+
+  .c1 { width:180px; height:60px; border-radius:100px; top:12%; left:5%; animation:cloudFloat 9s ease-in-out infinite; }
+  .c1::before { width:80px; height:80px; top:-40px; left:20px; }
+  .c1::after { width:60px; height:60px; top:-30px; left:70px; }
+
+  .c2 { width:240px; height:70px; border-radius:100px; top:20%; right:3%; animation:cloudFloat 12s ease-in-out infinite 2s; }
+  .c2::before { width:100px; height:100px; top:-50px; left:30px; }
+  .c2::after { width:80px; height:80px; top:-40px; left:100px; }
+
+  .c3 { width:140px; height:50px; border-radius:100px; bottom:18%; left:8%; animation:cloudFloat 8s ease-in-out infinite 1s; }
+  .c3::before { width:70px; height:70px; top:-35px; left:15px; }
+  .c3::after { width:55px; height:55px; top:-28px; left:60px; }
+
+  .c4 { width:200px; height:65px; border-radius:100px; bottom:25%; right:5%; animation:cloudFloat 11s ease-in-out infinite 3s; }
+  .c4::before { width:90px; height:90px; top:-45px; left:25px; }
+  .c4::after { width:70px; height:70px; top:-35px; left:90px; }
+
+  .hero-badge {
+    display:inline-block;
+    background:rgba(255,255,255,0.3);
+    color:var(--white);
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    padding:0.5em 1.8em;
+    border-radius:100px;
+    margin-bottom:2rem;
+    font-weight:500;
+    border:1px solid rgba(255,255,255,0.5);
+    opacity:0;
+    animation:popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.2s forwards;
+    position:relative; z-index:1;
+  }
+  .hero-title {
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:clamp(1.9rem,5.5vw,3.8rem);
+    font-weight:900;
+    color:var(--white);
+    line-height:1.6;
+    margin-bottom:1.8rem;
+    text-shadow:0 2px 20px rgba(200,90,0,0.25);
+    opacity:0;
+    animation:popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.4s forwards;
+    position:relative; z-index:1;
+  }
+  .hero-sub {
+    font-size:clamp(0.85rem,2vw,1rem);
+    color:rgba(255,255,255,0.8);
+    line-height:2.4;
+    font-weight:300;
+    max-width:480px;
+    opacity:0;
+    animation:popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.6s forwards;
+    position:relative; z-index:1;
+  }
+
+  /* 波形の境界 */
+  .hero-wave {
+    position:absolute;
+    bottom:-2px; left:0; right:0;
+    z-index:2;
+  }
+
+  .hero-scroll {
+    position:absolute; bottom:3.5rem; left:50%; transform:translateX(-50%);
+    font-size:0.65rem; letter-spacing:0.2em; color:rgba(255,255,255,0.55);
+    z-index:3; animation:bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(6px);} }
+  @keyframes popIn { from{opacity:0;transform:scale(0.92) translateY(12px);} to{opacity:1;transform:scale(1) translateY(0);} }
+
+  /* Services */
+  .services { padding:7rem 2rem 6rem; background:var(--orange4); position:relative; z-index:1; }
+  .container { max-width:960px; margin:0 auto; }
+  .section-header { text-align:center; margin-bottom:4rem; }
+  .sl {
+    display:inline-block;
+    background:var(--orange1);
+    color:var(--white);
+    font-size:0.62rem;
+    letter-spacing:0.2em;
+    padding:0.4em 1.4em;
+    border-radius:100px;
+    margin-bottom:1.2rem;
+    font-weight:500;
+  }
+  .st {
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:clamp(1.5rem,3.5vw,2.2rem);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.6;
+  }
+
+  .services-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+  }
+
+  /* カードを雲形に */
+  .service-card {
+    background:var(--white);
+    border-radius:40px 40px 32px 32px;
+    padding:2.2rem 1.5rem 2rem;
+    position:relative;
+    transition:transform 0.3s, box-shadow 0.3s;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 4px 20px rgba(200,90,0,0.08);
+  }
+  .service-card::before {
+    content:'';
+    position:absolute;
+    top:-18px; left:50%;
+    transform:translateX(-50%);
+    width:70%; height:36px;
+    background:var(--white);
+    border-radius:50%;
+    box-shadow:0 -4px 12px rgba(200,90,0,0.06);
+  }
+  .service-card::after {
+    content:'';
+    position:absolute;
+    top:-10px; left:20%;
+    width:40%; height:28px;
+    background:var(--white);
+    border-radius:50%;
+  }
+  .service-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 20px 48px rgba(200,90,0,0.14);
+  }
+  .service-card.coming { opacity:0.55; cursor:default; }
+  .service-card.coming:hover { transform:none; box-shadow:0 4px 20px rgba(200,90,0,0.08); }
+
+  .service-badge {
+    position:absolute;
+    top:-32px; right:1.2rem;
+    font-size:0.6rem;
+    letter-spacing:0.08em;
+    padding:0.3em 1em;
+    border-radius:100px;
+    font-weight:500;
+    z-index:1;
+  }
+  .service-badge.live { background:var(--orange1); color:var(--white); }
+  .service-badge.soon { background:#EEE; color:var(--gray); }
+
+  .service-icon { font-size:2.4rem; margin-bottom:1rem; position:relative; z-index:1; }
+  .service-name {
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:1.05rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:0.7rem;
+    line-height:1.5;
+    position:relative; z-index:1;
+  }
+  .service-desc { font-size:0.8rem; color:var(--gray); line-height:2; font-weight:300; flex:1; position:relative; z-index:1; }
+  .service-divider { height:1px; background:var(--orange3); margin:1.2rem 0; position:relative; z-index:1; }
+  .service-tagline { font-size:0.7rem; color:var(--orange2); line-height:1.8; font-weight:300; position:relative; z-index:1; }
+  .service-btn {
+    display:block;
+    margin-top:1.2rem;
+    background:linear-gradient(135deg, var(--orange1), var(--deep));
+    color:var(--white);
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    padding:0.85em 1.4em;
+    text-decoration:none;
+    font-weight:500;
+    border-radius:100px;
+    text-align:center;
+    transition:opacity 0.2s, transform 0.2s;
+    box-shadow:0 4px 16px rgba(200,90,0,0.25);
+    position:relative; z-index:1;
+  }
+  .service-btn:hover { opacity:0.9; transform:scale(1.02); }
+
+  /* Concept */
+  .concept {
+    padding:6rem 2rem;
+    background:linear-gradient(160deg, var(--orange2) 0%, var(--orange1) 100%);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .concept-c1 { position:absolute; width:200px; height:65px; border-radius:100px; background:rgba(255,255,255,0.15); top:15%; left:3%; animation:cloudFloat 8s ease-in-out infinite; }
+  .concept-c1::before { content:''; position:absolute; width:90px; height:90px; border-radius:50%; background:rgba(255,255,255,0.15); top:-45px; left:20px; }
+  .concept-c2 { position:absolute; width:160px; height:55px; border-radius:100px; background:rgba(255,255,255,0.12); bottom:15%; right:4%; animation:cloudFloat 11s ease-in-out infinite 2s; }
+  .concept-c2::before { content:''; position:absolute; width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,0.12); top:-35px; left:15px; }
+
+  .concept .st { color:var(--white); margin-bottom:2rem; }
+  .concept-lead {
+    font-size:0.95rem;
+    line-height:2.8;
+    color:rgba(255,255,255,0.8);
+    font-weight:300;
+    max-width:560px;
+    margin:0 auto;
+    position:relative; z-index:1;
+  }
+  .concept-lead strong { color:var(--white); font-weight:600; }
+  .concept-emoji { font-size:3rem; margin-bottom:2rem; display:block; animation:cloudFloat 4s ease-in-out infinite; position:relative; z-index:1; }
+  .concept .sl { background:rgba(255,255,255,0.25); color:var(--white); margin-bottom:1.2rem; position:relative; z-index:1; }
+  .concept .st { position:relative; z-index:1; }
+
+  /* Footer */
+  .pricing { padding:6rem 2rem; background:var(--white); text-align:center; }
+  .pricing-box { display:flex; justify-content:center; margin:2.5rem 0 1.5rem; }
+  .pricing-card {
+    background:linear-gradient(135deg, var(--orange1), var(--deep));
+    border-radius:40px 40px 32px 32px;
+    padding:3rem 5rem;
+    color:var(--white);
+    box-shadow:0 12px 40px rgba(200,90,0,0.2);
+    position:relative;
+  }
+  .pricing-card::before {
+    content:'';
+    position:absolute;
+    top:-20px; left:50%; transform:translateX(-50%);
+    width:65%; height:40px;
+    background:linear-gradient(135deg, var(--orange1), var(--deep));
+    border-radius:50%;
+  }
+  .pricing-icon { font-size:2.5rem; margin-bottom:1rem; position:relative; z-index:1; }
+  .pricing-price { font-family:'Zen Maru Gothic',sans-serif; font-size:4rem; font-weight:900; line-height:1; position:relative; z-index:1; }
+  .pricing-unit { font-size:0.85rem; color:rgba(255,255,255,0.7); margin:0.3rem 0 1.2rem; font-weight:300; position:relative; z-index:1; }
+  .pricing-desc { font-size:0.85rem; color:rgba(255,255,255,0.8); line-height:2; font-weight:300; position:relative; z-index:1; max-width:280px; }
+  .pricing-note { font-size:0.75rem; color:var(--gray); font-weight:300; }
+  footer { background:var(--ink); padding:3rem 2rem; text-align:center; }
+  .footer-logo { font-family:'Zen Maru Gothic',sans-serif; font-size:1.1rem; color:var(--orange2); margin-bottom:0.5rem; font-weight:700; }
+  .footer-tag { font-size:0.75rem; color:rgba(255,255,255,0.3); margin-bottom:1rem; font-weight:300; }
+  .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.15); }
+
+  @media(max-width:700px) { .services-grid { grid-template-columns:1fr; } }
+  @media(min-width:701px) and (max-width:960px) { .services-grid { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="c1 cloud-shape"></div>
+  <div class="c2 cloud-shape"></div>
+  <div class="c3 cloud-shape"></div>
+  <div class="c4 cloud-shape"></div>
+
+  <p class="hero-badge">☁️ 人生楽しんだもんが価値シリーズ</p>
+  <h1 class="hero-title">
+    なんとなく生きてるけど、<br>
+    ちゃんとすごいよ。<br>
+    証明してみませんか？？
+  </h1>
+  <p class="hero-sub">答えが出ない問いに、大真面目な形式で証明してくれる。<br>5つのサービスが、あなたの人生を面白くする。</p>
+  <p class="hero-scroll">▼ scroll</p>
+
+  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF5E6"/>
+  </svg>
+</section>
+
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <p class="sl">SERVICES</p>
+      <h2 class="st">サービス一覧</h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-badge live">✅ 公開中</span>
+        <div class="service-icon">📜</div>
+        <div class="service-name">もしも公証人</div>
+        <p class="service-desc">あの日の&ldquo;もしも&rdquo;を、陰謀論風に本格公証</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+        <a href="https://line.me/R/ti/p/@481uepja" class="service-btn">さっそく使う（50円）→</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-badge live">✅ 公開中</span>
+        <div class="service-icon">🔮</div>
+        <div class="service-name">縁の鑑定書</div>
+        <p class="service-desc">出会いの奇跡を、宇宙規模でこじつけて証明</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+        <a href="https://line.me/R/ti/p/@044zqhut" class="service-btn">さっそく使う（50円）→</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-badge live">✅ 公開中</span>
+        <div class="service-icon">🧾</div>
+        <div class="service-name">奇跡の領収書</div>
+        <p class="service-desc">小さなラッキーを、奇跡の総額に換算して領収書発行</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+        <a href="https://line.me/R/ti/p/@299kmbzb" class="service-btn">さっそく使う（50円）→</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-badge live">✅ 公開中</span>
+        <div class="service-icon">🏅</div>
+        <div class="service-name">自分褒め鑑定士</div>
+        <p class="service-desc">今日の頑張りを、ベリーベリーグレートに褒めちぎる</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+        <a href="https://line.me/R/ti/p/@081bhypt" class="service-btn">さっそく使う（50円）→</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-badge live">✅ 公開中</span>
+        <div class="service-icon">⚖️</div>
+        <div class="service-name">言い訳鑑定書</div>
+        <p class="service-desc">どんな言い訳も、法廷で全力弁護して無罪にします</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+        <a href="https://line.me/R/ti/p/@620xhsdt" class="service-btn">さっそく使う（50円）→</a>
+      </div>
+
+      <div class="service-card coming">
+        <span class="service-badge soon">近日公開</span>
+        <div class="service-icon">✨</div>
+        <div class="service-name">続々公開予定！</div>
+        <p class="service-desc">ときめき証明書・今日の自分MVP賞・現在地証明書など、新しいサービスが続々登場します。お楽しみに！</p>
+        <div class="service-divider"></div>
+        <p class="service-tagline">AIが本気で作った、クスっと笑えて元気になるお守りです。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="container">
+    <div class="section-header">
+      <p class="sl">PRICING</p>
+      <h2 class="st">料金</h2>
+    </div>
+    <div class="pricing-box">
+      <div class="pricing-card">
+        <div class="pricing-icon">☁️</div>
+        <div class="pricing-price">¥50</div>
+        <div class="pricing-unit">1回</div>
+        <p class="pricing-desc">気になったサービスをその都度、気軽に試せます。</p>
+      </div>
+    </div>
+    <p class="pricing-note">※ 各サービスのLINEアカウントから直接お支払いいただけます。</p>
+  </div>
+</section>
+
+<section class="concept">
+  <div class="concept-c1"></div>
+  <div class="concept-c2"></div>
+  <div class="container">
+    <p class="sl">CONCEPT</p>
+    <span class="concept-emoji">☁️</span>
+    <h2 class="st">頑張ってる人が、<br>クスっと笑って、ちょっと元気になる。</h2>
+    <p class="concept-lead">
+      答えが出ない問いに、<strong>大真面目な形式で証明してくれる</strong>サービスシリーズ。<br>
+      使った人が「なんかいいな」と思えるものを作りたい。<br>
+      <strong>皆が幸せになってほしい。私達頑張ってるから。</strong>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">人生楽しんだもんが価値シリーズ ☁️</div>
+  <p class="footer-tag">あなたの人生、ちゃんと証明します。</p>
+  <p class="footer-copy">&copy; 2026 人生楽しんだもんが価値シリーズ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
