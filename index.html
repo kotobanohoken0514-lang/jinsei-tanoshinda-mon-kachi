@@ -290,8 +290,46 @@
   .footer-logo { font-family:'Zen Maru Gothic',sans-serif; font-size:1.1rem; color:var(--orange2); margin-bottom:0.5rem; font-weight:700; }
   .footer-tag { font-size:0.75rem; color:rgba(255,255,255,0.3); margin-bottom:1rem; font-weight:300; }
   .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.15); }
+  .footer-legal-link { display:inline-block; font-size:0.7rem; color:rgba(255,255,255,0.35); text-decoration:none; margin-bottom:1rem; letter-spacing:0.05em; transition:color 0.2s; }
+  .footer-legal-link:hover { color:var(--orange2); text-decoration:underline; }
+
+  /* 特定商取引法に基づく表記 */
+  .legal { padding:6rem 2rem; background:var(--orange4); position:relative; z-index:1; }
+  .legal-table {
+    max-width:720px;
+    margin:0 auto;
+    background:var(--white);
+    border-radius:32px;
+    padding:0.8rem 2.4rem;
+    box-shadow:0 4px 20px rgba(200,90,0,0.08);
+  }
+  .legal-row {
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:1.5rem;
+    padding:1.3rem 0.2rem;
+    border-bottom:1px solid var(--orange3);
+    align-items:start;
+  }
+  .legal-row:last-child { border-bottom:none; }
+  .legal-label {
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--deep);
+    padding-top:0.15rem;
+    letter-spacing:0.02em;
+  }
+  .legal-value { font-size:0.85rem; color:var(--ink); line-height:2; font-weight:300; }
+  .legal-value a { color:var(--orange1); text-decoration:none; }
+  .legal-value a:hover { text-decoration:underline; }
+  .legal-note { display:block; font-size:0.72rem; color:var(--gray); margin-top:0.4rem; line-height:1.8; }
 
   @media(max-width:700px) { .services-grid { grid-template-columns:1fr; } }
+  @media(max-width:700px) {
+    .legal-table { padding:0.4rem 1.4rem; border-radius:24px; }
+    .legal-row { grid-template-columns:1fr; gap:0.3rem; padding:1.1rem 0.2rem; }
+  }
   @media(min-width:701px) and (max-width:960px) { .services-grid { grid-template-columns:repeat(2,1fr); } }
 </style>
 </head>
@@ -421,9 +459,94 @@
   </div>
 </section>
 
+<section class="legal" id="legal">
+  <div class="container">
+    <div class="section-header">
+      <p class="sl">LEGAL</p>
+      <h2 class="st">特定商取引法に基づく表記</h2>
+    </div>
+    <div class="legal-table">
+
+      <div class="legal-row">
+        <div class="legal-label">販売事業者名</div>
+        <div class="legal-value">人生楽しんだもんが価値シリーズ</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">所在地</div>
+        <div class="legal-value">請求があり次第、遅滞なく開示いたします。</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">電話番号</div>
+        <div class="legal-value">
+          050-6864-0506
+          <span class="legal-note">※ お問い合わせはLINEにて承っております。電話での対応はしておりません。</span>
+        </div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">メールアドレス</div>
+        <div class="legal-value"><a href="mailto:kotobanohoken0514@gmail.com">kotobanohoken0514@gmail.com</a></div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">サービス名</div>
+        <div class="legal-value">
+          人生楽しんだもんが価値シリーズ
+          <span class="legal-note">縁の鑑定書／もしも公証人／奇跡の領収書／自分褒め鑑定士／言い訳鑑定書</span>
+        </div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">販売価格</div>
+        <div class="legal-value">
+          各サービス 1回 50円
+          <span class="legal-note">※ 表示価格はすべて税込みです。</span>
+        </div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">追加手数料</div>
+        <div class="legal-value">販売価格以外の追加費用はありません。</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">支払方法</div>
+        <div class="legal-value">クレジットカード（Stripe決済）</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">支払時期</div>
+        <div class="legal-value">購入時にお支払いいただきます。</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">サービス提供時期</div>
+        <div class="legal-value">決済完了後、即時ご利用いただけます。</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">動作環境</div>
+        <div class="legal-value">LINEアプリがインストールされたスマートフォン（iOS・Android）</div>
+      </div>
+
+      <div class="legal-row">
+        <div class="legal-label">返品・キャンセル</div>
+        <div class="legal-value">
+          ご購入後、万が一ご満足いただけない場合は、直近のご購入1回分（50円）を全額返金いたします。返金をご希望の場合は、LINEよりご連絡ください。
+          <span class="legal-note">※ お問い合わせはすべてLINEにて承っております。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-logo">人生楽しんだもんが価値シリーズ ☁️</div>
   <p class="footer-tag">あなたの人生、ちゃんと証明します。</p>
+  <a href="#legal" class="footer-legal-link">特定商取引法に基づく表記</a>
   <p class="footer-copy">&copy; 2026 人生楽しんだもんが価値シリーズ. All rights reserved.</p>
 </footer>
 
